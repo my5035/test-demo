@@ -1,0 +1,61 @@
+:css
+  #search_result{padding: 20px;padding-top: 0}
+  .font14{font-size: 15px}
+  .td-label {width: 6%;}
+  .emp {height: 20px}
+  .mt15{ margin-top: 15px}
+  .align-center * {text-align: center}
+  .btn-warning{color: white!important;}
+  .btn-danger{color: white !important;}
+  .sel-g{width:100px}
+
+#search_result
+  .row
+    %span.h2= "grade_school:"
+  .emp
+  = search_form_for(@search, url: grade_schools_path, builder: SimpleForm::FormBuilder,
+                    defaults:{input_html: {class: 'form-control sel-g'},
+                              html: {class: "form-inline", role: "form"}}) do |f|
+    %table.search_div
+      %tr
+        %td.td-label
+          %label.font14 name:
+        %td= f.input :name_cont, label: false
+        %td.td-label
+          %label.font14 grade:
+        %td= f.input :grade_eq, as: :select, collection: GradeSchool.grade_options, label: false, style: 'width:200px'
+        %td{width: '8%'}
+          %label.font14 enrolled?
+        %td= f.input :enrolled_eq, as: :select, collection: GradeSchool::ENROLLED_OPTION, label: false
+        %td
+          = f.button :submit, "search", {class: "btn btn-primary bt-xs"}
+          &nbsp;
+          = f.button :submit, "clear", {class: "btn btn-default clear_search" }
+          &nbsp;&nbsp;&nbsp;
+        %td
+          = link_to 'new', new_grade_school_path, class: '	btn btn-warning', target: '_blank'
+
+  .row.mt15
+    .col-xs-10
+      .table-responsive
+        %table.table.table-bordered.table-hover.align-center
+          %thead
+            %tr
+              %th{width:'25%'} name
+              %th{width:'20%'} grade
+              %th{width:'20%'} enrolled
+              %th{width:'25%'} handle
+          %tbody
+            - @grade_schools.each do |gs|
+              %tr
+                %td= gs.name
+                %td= gs.grade_text
+                %td= gs.enrolled_text
+                %td
+                  = link_to 'edit', edit_grade_school_path(gs), class: 'btn btn-xs btn-primary', target: '_blank'
+                  = link_to 'delete', gs, class: "btn btn-xs btn-danger",method: :delete, remote: true, data: {confirm: "delete it？"}
+
+:coffee
+  $(".clear_search").click ->
+    $('.search_div').find(':input').not(':button, :submit, :reset, :hidden').val('');
+    return false

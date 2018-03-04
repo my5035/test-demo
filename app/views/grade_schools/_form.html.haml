@@ -1,0 +1,28 @@
+:css
+  .table-hover th{ text-align: right}
+
+= simple_form_for(@grade_school,
+                  :defaults=>{ input_html: {class: 'form-control'},
+                               html: {class: "form-inline", role: "form"} }) do |f|
+  = f.error_notification
+  .row
+    .col-xs-6
+      .table-responsive
+        %table.table.table-bordered.table-hover
+          %tr
+            %th= f.label 'name：'
+            %td= f.input_field :name
+          %tr
+            %th= f.label 'grade：'
+            %td= f.select :grade, [['', '']] + GradeSchool.grade_options, {}, class: 'form-control'
+          %tr
+            %th= f.label 'enrolled：'
+            %td= f.select :enrolled, [['', '']] + GradeSchool::ENROLLED_OPTION, {}, class: 'form-control'
+          %tr
+            %td.text-center{colspan: 2}
+              = f.button :submit, 'confirm', :class=>'btn btn-primary'
+
+
+
+
+
