@@ -11,7 +11,7 @@
 
 #search_result
   .row
-    %span.h2= "grade_school:"
+    %span.h2.title= "grade_school:"
   .emp
   = search_form_for(@search, url: grade_schools_path, builder: SimpleForm::FormBuilder,
                     defaults:{input_html: {class: 'form-control sel-g'},

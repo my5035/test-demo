@@ -61,9 +61,18 @@ gem "simple_form"
 
 gem 'ransack'
 
-# gem "minitest"
-# 这里有个坑 版本问题，5.11 会提示 undefined method
-# https://github.com/seattlerb/minitest/issues/730
-gem 'minitest', '5.10.3'
 
-gem "minitest-rails", '~> 3.0.0'
+
+# https://github.com/kern/minitest-reporters
+# https://ninghao.net/blog/4196
+group :test do
+  # gem "minitest"
+  # 这里有个坑 版本问题，5.11 会提示 undefined method
+  # https://github.com/seattlerb/minitest/issues/730
+  gem 'minitest', '5.10.3'
+
+  gem "minitest-rails", '~> 3.0.0'
+
+  gem 'minitest-reporters'
+  gem 'rails-controller-testing'
+end
