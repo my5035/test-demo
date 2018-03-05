@@ -165,6 +165,8 @@
     <orderEntry type="library" scope="PROVIDED" name="enumerize (v2.2.1, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.7.0, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot (v4.8.2, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v4.8.2, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.23, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.1, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="haml (v5.0.4, RVM: ruby-2.3.0 [minitest_demo]) [gem]" level="application" />

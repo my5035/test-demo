@@ -1,11 +1,11 @@
 require "test_helper"
 
 class GradeSchoolsControllerTest < ActionDispatch::IntegrationTest
-  # def test_sanity
-  #   flunk "Need real tests"
-  # end
+  include FactoryBot::Syntax::Methods
+
   def setup
     @grade_school = GradeSchool.new
+    (1..10).each{FactoryBot.create(:grade_school)}
   end
 
   test "get index" do
@@ -18,21 +18,19 @@ class GradeSchoolsControllerTest < ActionDispatch::IntegrationTest
 
   end
 
-  # test "get index order grade" do
-  #   GradeSchool.create(:grade_school_test_grade_order)
-  #
-  #   get grade_schools_path
-  #   @grade_schools = assigns(:grade_schools)
-  #   assert @grade_schools[0].grade < @grade_schools[1].grade
-  # end
-  #
-  # test "get index order name" do
-  #   GradeSchool.create(:grade_school_test_grade_order)
-  #
-  #   get grade_schools_path
-  #   @grade_schools = assigns(:grade_schools)
-  #   assert @grade_schools[0].grade < @grade_schools[1].grade
-  # end
+  test "get index order grade" do
+    get grade_schools_url
+    @grade_schools = assigns(:grade_schools)
+    assert @grade_schools[0].grade.to_i <= @grade_schools[1].grade.to_i
+  end
+
+  test "get index order name" do
+    (1..10).each{FactoryBot.create(:grade_school)}
+
+    get grade_schools_url, params: { q: { grade: 2 } }
+    @grade_schools = assigns(:grade_schools)
+    assert @grade_schools[0].name.to_s <= @grade_schools[1].name.to_s
+  end
 
   test "get new" do
     get new_grade_school_path
@@ -48,20 +46,21 @@ class GradeSchoolsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get show" do
-    @grade_school ||= GradeSchool.last
+    @grade_school = GradeSchool.last
     get grade_school_url(@grade_school)
     assert_response :success
   end
 
   test "get edit" do
-    @grade_school ||= GradeSchool.last
+    @grade_school = GradeSchool.last
     get edit_grade_school_url(@grade_school)
     assert_response :success
   end
 
   test "patch update" do
+    @grade_school = GradeSchool.first
     patch grade_school_url(@grade_school), params: { grade_school: { name: 'fred', grade: 1 } }
-    assert_redirected_to article_url(@article)
+    assert_redirected_to grade_school_url(@grade_school)
   end
 
   test "delete destroy" do

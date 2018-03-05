@@ -2,7 +2,7 @@ require "test_helper"
 
 class GradeSchoolTest < ActiveSupport::TestCase
   def setup
-    @grade_school ||= GradeSchool.new
+    @grade_school = GradeSchool.new
   end
 
   test "grade school field need presence" do

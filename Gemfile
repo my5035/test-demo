@@ -74,5 +74,10 @@ group :test do
   gem "minitest-rails", '~> 3.0.0'
 
   gem 'minitest-reporters'
+
   gem 'rails-controller-testing'
+end
+
+group :development, :test do
+  gem "factory_bot_rails",  '~> 4.8.2'
 end
