@@ -5,7 +5,7 @@ class GradeSchoolsController < ApplicationController
   # GET /grade_schools.json
   def index
     @search = GradeSchool.search params[:q]
-    @grade_schools = @search.result.order(:grade, name: :desc)
+    @grade_schools = @search.result.order(:grade, :name)
   end
 
   # GET /grade_schools/1
